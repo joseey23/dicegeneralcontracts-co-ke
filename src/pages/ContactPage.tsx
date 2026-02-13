@@ -63,7 +63,7 @@ export default function ContactPage() {
               <div className="space-y-4">
                 {[
                   { icon: Phone, label: "+254 703 581 833", href: "tel:+254703581833" },
-                  { icon: Mail, label: "info@dicegc.co.ke", href: "mailto:info@dicegc.co.ke" },
+                  { icon: Mail, label: "info@dicegeneralcontracts.co.ke", href: "mailto:info@dicegeneralcontracts.co.ke" },
                   { icon: MapPin, label: "Nairobi, Kenya", href: "#" },
                 ].map((item) => (
                   <a key={item.label} href={item.href} className="flex items-center gap-4 p-4 rounded-lg bg-secondary border border-border hover:border-accent/40 transition-colors">
