@@ -20,7 +20,7 @@ export default function Hero() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 container-wide section-padding !pt-32 md:!pt-40">
+      <div className="relative z-10 container-wide section-padding !pt-32 md:!pt-40 !pb-28">
         <div className="max-w-3xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -83,7 +83,7 @@ export default function Hero() {
             opacity: { delay: 1.2, duration: 0.5 },
             y: { delay: 1.5, duration: 2, repeat: Infinity, ease: "easeInOut" },
           }}
-          className="absolute bottom-10 left-0 right-0 flex flex-col items-center gap-2 mt-16"
+          className="absolute bottom-6 left-0 right-0 flex flex-col items-center gap-2"
         >
           <span className="text-primary-foreground/50 text-xs tracking-widest uppercase">Scroll</span>
           <div className="w-px h-8 bg-gradient-to-b from-accent to-transparent" />
