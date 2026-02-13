@@ -62,9 +62,9 @@ export default function ContactPage() {
             <motion.div initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5, delay: 0.2 }} className="space-y-6">
               <div className="space-y-4">
                 {[
-                  { icon: Phone, label: "+254 703 581 833", href: "tel:+254703581833" },
-                  { icon: Mail, label: "info@dicegeneralcontracts.co.ke", href: "mailto:info@dicegeneralcontracts.co.ke" },
-                  { icon: MapPin, label: "Nairobi, Kenya", href: "#" },
+                   { icon: Phone, label: "+254 703 581 833", href: "tel:+254703581833" },
+                   { icon: Mail, label: "info@dicelimited.co.ke", href: "mailto:info@dicelimited.co.ke" },
+                   { icon: MapPin, label: "Nairobi, Kenya", href: "#" },
                 ].map((item) => (
                   <a key={item.label} href={item.href} className="flex items-center gap-4 p-4 rounded-lg bg-secondary border border-border hover:border-accent/40 transition-colors">
                     <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center">

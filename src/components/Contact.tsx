@@ -98,9 +98,9 @@ export default function Contact() {
           >
             <div className="space-y-4">
               {[
-                { icon: Phone, label: "+254 703 581 833", href: "tel:+254703581833" },
-                { icon: Mail, label: "info@dicegeneralcontracts.co.ke", href: "mailto:info@dicegeneralcontracts.co.ke" },
-                { icon: MapPin, label: "Nairobi, Kenya", href: "#" },
+                 { icon: Phone, label: "+254 703 581 833", href: "tel:+254703581833" },
+                 { icon: Mail, label: "info@dicelimited.co.ke", href: "mailto:info@dicelimited.co.ke" },
+                 { icon: MapPin, label: "Nairobi, Kenya", href: "#" },
               ].map((item) => (
                 <a
                   key={item.label}
