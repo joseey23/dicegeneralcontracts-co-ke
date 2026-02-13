@@ -98,7 +98,7 @@ export default function Contact() {
           >
             <div className="space-y-4">
               {[
-                { icon: Phone, label: "+254 700 000 000", href: "tel:+254700000000" },
+                { icon: Phone, label: "+254 703 581 833", href: "tel:+254703581833" },
                 { icon: Mail, label: "info@dicegc.co.ke", href: "mailto:info@dicegc.co.ke" },
                 { icon: MapPin, label: "Nairobi, Kenya", href: "#" },
               ].map((item) => (

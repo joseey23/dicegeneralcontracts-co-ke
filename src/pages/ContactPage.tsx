@@ -62,7 +62,7 @@ export default function ContactPage() {
             <motion.div initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5, delay: 0.2 }} className="space-y-6">
               <div className="space-y-4">
                 {[
-                  { icon: Phone, label: "+254 700 000 000", href: "tel:+254700000000" },
+                  { icon: Phone, label: "+254 703 581 833", href: "tel:+254703581833" },
                   { icon: Mail, label: "info@dicegc.co.ke", href: "mailto:info@dicegc.co.ke" },
                   { icon: MapPin, label: "Nairobi, Kenya", href: "#" },
                 ].map((item) => (
