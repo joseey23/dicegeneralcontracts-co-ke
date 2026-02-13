@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import heroImage from "@/assets/hero-construction.jpg";
 
 export default function Hero() {
@@ -59,18 +60,18 @@ export default function Hero() {
             transition={{ duration: 0.7, delay: 0.35 }}
             className="flex flex-wrap gap-4"
           >
-            <button
-              onClick={() => scrollTo("projects")}
+            <Link
+              to="/projects"
               className="orange-gradient text-accent-foreground px-8 py-3.5 rounded-md font-bold text-sm tracking-wide hover:opacity-90 transition-opacity"
             >
               View Our Projects
-            </button>
-            <button
-              onClick={() => scrollTo("contact")}
+            </Link>
+            <Link
+              to="/contact"
               className="border-2 border-primary-foreground/30 text-primary-foreground px-8 py-3.5 rounded-md font-bold text-sm tracking-wide hover:border-accent hover:text-accent transition-colors"
             >
               Request a Quote
-            </button>
+            </Link>
           </motion.div>
         </div>
 

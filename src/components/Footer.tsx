@@ -1,21 +1,15 @@
 import { Link } from "react-router-dom";
+import diceLogo from "@/assets/dice-logo.png";
 
 export default function Footer() {
-  const scrollTo = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-  };
-
   return (
     <footer className="navy-gradient text-primary-foreground">
       <div className="container-wide section-padding !py-12">
         <div className="grid md:grid-cols-3 gap-10">
           <div>
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 rounded-md orange-gradient flex items-center justify-center">
-                <span className="font-display font-extrabold text-accent-foreground">D</span>
-              </div>
-              <span className="font-display font-bold text-lg">DICE<span className="text-accent ml-1">GC</span></span>
-            </div>
+            <Link to="/" className="inline-block mb-4">
+              <img src={diceLogo} alt="Dice General Contractors Limited" className="h-14 w-auto brightness-0 invert" />
+            </Link>
             <p className="text-primary-foreground/50 text-sm leading-relaxed max-w-xs">
               NCA-certified general contractor delivering civil, electrical, and mechanical engineering solutions across Kenya.
             </p>
@@ -24,14 +18,19 @@ export default function Footer() {
           <div>
             <h4 className="font-display font-bold mb-4">Quick Links</h4>
             <div className="flex flex-col gap-2">
-              {["Services", "Projects", "Certifications", "Contact"].map((item) => (
-                <button
-                  key={item}
-                  onClick={() => scrollTo(item.toLowerCase())}
-                  className="text-primary-foreground/50 hover:text-accent text-sm text-left transition-colors"
+              {[
+                { label: "Services", href: "/services" },
+                { label: "Projects", href: "/projects" },
+                { label: "Certifications", href: "/certifications" },
+                { label: "Contact", href: "/contact" },
+              ].map((item) => (
+                <Link
+                  key={item.label}
+                  to={item.href}
+                  className="text-primary-foreground/50 hover:text-accent text-sm transition-colors"
                 >
-                  {item}
-                </button>
+                  {item.label}
+                </Link>
               ))}
             </div>
           </div>
