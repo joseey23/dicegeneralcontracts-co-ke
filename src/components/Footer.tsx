@@ -40,7 +40,7 @@ export default function Footer() {
             <div className="space-y-2 text-primary-foreground/50 text-sm">
               <p>Nairobi, Kenya</p>
               <p>+254 703 581 833</p>
-              <p>info@dicegeneralcontracts.co.ke</p>
+              <p>info@dicelimited.co.ke</p>
             </div>
           </div>
         </div>
