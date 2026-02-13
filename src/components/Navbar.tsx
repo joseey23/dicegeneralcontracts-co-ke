@@ -35,7 +35,7 @@ export default function Navbar() {
       <div className="container-wide section-padding !py-0">
         <div className="flex items-center justify-between h-16 md:h-20">
           <Link to="/" className="flex items-center gap-2">
-            <img src={diceLogo} alt="Dice General Contractors Limited" className="h-12 md:h-14 w-auto" />
+            <img src={diceLogo} alt="Dice General Contractors Limited" className="h-12 md:h-14 w-auto brightness-0 invert" />
           </Link>
 
           {/* Desktop */}

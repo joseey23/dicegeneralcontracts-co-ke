@@ -39,7 +39,7 @@ export default function Footer() {
             <h4 className="font-display font-bold mb-4">Contact</h4>
             <div className="space-y-2 text-primary-foreground/50 text-sm">
               <p>Nairobi, Kenya</p>
-              <p>+254 700 000 000</p>
+              <p>+254 703 581 833</p>
               <p>info@dicegc.co.ke</p>
             </div>
           </div>
