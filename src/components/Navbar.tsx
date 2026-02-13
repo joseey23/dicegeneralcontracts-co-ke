@@ -2,14 +2,15 @@ import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
+import diceLogo from "@/assets/dice-logo.png";
 
 const navLinks = [
-  { label: "Home", href: "/#home" },
-  { label: "Services", href: "/#services" },
-  { label: "Projects", href: "/#projects" },
-  { label: "Why Us", href: "/#why-us" },
-  { label: "Certifications", href: "/#certifications" },
-  { label: "Contact", href: "/#contact" },
+  { label: "Home", href: "/" },
+  { label: "Services", href: "/services" },
+  { label: "Projects", href: "/projects" },
+  { label: "Why Us", href: "/why-us" },
+  { label: "Certifications", href: "/certifications" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export default function Navbar() {
@@ -23,18 +24,6 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const handleNavClick = (href: string) => {
-    setMobileOpen(false);
-    if (href.startsWith("/#")) {
-      const id = href.replace("/#", "");
-      if (location.pathname !== "/") {
-        window.location.href = href;
-        return;
-      }
-      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -46,31 +35,30 @@ export default function Navbar() {
       <div className="container-wide section-padding !py-0">
         <div className="flex items-center justify-between h-16 md:h-20">
           <Link to="/" className="flex items-center gap-2">
-            <div className="w-9 h-9 rounded-md orange-gradient flex items-center justify-center">
-              <span className="font-display font-extrabold text-accent-foreground text-lg">D</span>
-            </div>
-            <span className="font-display font-bold text-primary-foreground text-lg tracking-tight">
-              DICE<span className="text-accent ml-1">GC</span>
-            </span>
+            <img src={diceLogo} alt="Dice General Contractors Limited" className="h-12 md:h-14 w-auto" />
           </Link>
 
           {/* Desktop */}
           <div className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
-              <button
+              <Link
                 key={link.label}
-                onClick={() => handleNavClick(link.href)}
-                className="text-primary-foreground/80 hover:text-accent font-medium text-sm tracking-wide transition-colors"
+                to={link.href}
+                className={`font-medium text-sm tracking-wide transition-colors ${
+                  location.pathname === link.href
+                    ? "text-accent"
+                    : "text-primary-foreground/80 hover:text-accent"
+                }`}
               >
                 {link.label}
-              </button>
+              </Link>
             ))}
-            <button
-              onClick={() => handleNavClick("/#contact")}
+            <Link
+              to="/contact"
               className="orange-gradient text-accent-foreground px-5 py-2 rounded-md font-semibold text-sm hover:opacity-90 transition-opacity"
             >
               Get a Quote
-            </button>
+            </Link>
           </div>
 
           {/* Mobile toggle */}
@@ -94,20 +82,26 @@ export default function Navbar() {
           >
             <div className="px-6 py-4 flex flex-col gap-3">
               {navLinks.map((link) => (
-                <button
+                <Link
                   key={link.label}
-                  onClick={() => handleNavClick(link.href)}
-                  className="text-primary-foreground/80 hover:text-accent py-2 text-left font-medium transition-colors"
+                  to={link.href}
+                  onClick={() => setMobileOpen(false)}
+                  className={`py-2 text-left font-medium transition-colors ${
+                    location.pathname === link.href
+                      ? "text-accent"
+                      : "text-primary-foreground/80 hover:text-accent"
+                  }`}
                 >
                   {link.label}
-                </button>
+                </Link>
               ))}
-              <button
-                onClick={() => handleNavClick("/#contact")}
-                className="orange-gradient text-accent-foreground px-5 py-2.5 rounded-md font-semibold text-sm mt-2"
+              <Link
+                to="/contact"
+                onClick={() => setMobileOpen(false)}
+                className="orange-gradient text-accent-foreground px-5 py-2.5 rounded-md font-semibold text-sm mt-2 text-center"
               >
                 Get a Quote
-              </button>
+              </Link>
             </div>
           </motion.div>
         )}
