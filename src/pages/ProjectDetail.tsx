@@ -1,6 +1,7 @@
+import { useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import { motion } from "framer-motion";
-import { ArrowLeft, Calendar, MapPin, User, Tag, Wrench, ArrowRight } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ArrowLeft, Calendar, MapPin, User, Tag, Wrench, ArrowRight, X, ChevronLeft, ChevronRight } from "lucide-react";
 import { projects } from "@/data/projects";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -9,6 +10,7 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 export default function ProjectDetail() {
   const { id } = useParams();
   const project = projects.find((p) => p.id === id);
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
   if (!project) {
     return (
@@ -109,6 +111,58 @@ export default function ProjectDetail() {
           </div>
         </div>
       </section>
+
+      {/* Photo Gallery */}
+      {project.images && project.images.length > 0 && (
+        <section className="section-padding !pt-0">
+          <div className="container-wide">
+            <h2 className="font-display font-bold text-2xl text-foreground mb-6">Project Gallery</h2>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+              {project.images.map((img, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.05 }}
+                  className="aspect-[4/3] rounded-lg overflow-hidden cursor-pointer group"
+                  onClick={() => setLightboxIndex(i)}
+                >
+                  <img src={img} alt={`${project.title} - Photo ${i + 1}`} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Lightbox */}
+      <AnimatePresence>
+        {lightboxIndex !== null && project.images && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center"
+            onClick={() => setLightboxIndex(null)}
+          >
+            <button onClick={() => setLightboxIndex(null)} className="absolute top-4 right-4 text-white/70 hover:text-white"><X size={28} /></button>
+            <button
+              className="absolute left-4 text-white/70 hover:text-white"
+              onClick={(e) => { e.stopPropagation(); setLightboxIndex((lightboxIndex - 1 + project.images!.length) % project.images!.length); }}
+            ><ChevronLeft size={36} /></button>
+            <img
+              src={project.images[lightboxIndex]}
+              alt={`${project.title} - Photo ${lightboxIndex + 1}`}
+              className="max-h-[85vh] max-w-[90vw] object-contain rounded-lg"
+              onClick={(e) => e.stopPropagation()}
+            />
+            <button
+              className="absolute right-4 text-white/70 hover:text-white"
+              onClick={(e) => { e.stopPropagation(); setLightboxIndex((lightboxIndex + 1) % project.images!.length); }}
+            ><ChevronRight size={36} /></button>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <Footer />
     </div>

@@ -11,6 +11,7 @@ export interface Project {
   scope: string[];
   discipline: string;
   stats?: { label: string; value: string }[];
+  images?: string[];
 }
 
 export const projects: Project[] = [
@@ -169,6 +170,7 @@ export const projects: Project[] = [
     scope: ["Foundation & structural works", "Kitchen installation", "Dining area fit-out", "Plumbing & electrical", "Equipment supply"],
     discipline: "Civil Engineering (NCA 2)",
     stats: [{ label: "Capacity", value: "800 Students" }, { label: "Status", value: "In Progress" }],
+    images: Array.from({ length: 10 }, (_, i) => `/images/projects/800-dining-hall/photo-${i + 1}.jpeg`),
   },
   {
     id: "kura-gypsum",
