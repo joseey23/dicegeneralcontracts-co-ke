@@ -221,6 +221,7 @@ const unsortedProjects: Project[] = [
     scope: ["Full construction", "Interior finishing", "Equipment supply", "Landscaping"],
     discipline: "Civil Engineering (NCA 2)",
     stats: [{ label: "Capacity", value: "100 Students" }, { label: "Status", value: "Handed Over" }],
+    images: Array.from({ length: 10 }, (_, i) => `/images/projects/100-capacity-completed/photo-${i + 1}.jpeg`),
   },
   {
     id: "metal-fabrication",
