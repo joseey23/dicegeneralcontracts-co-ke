@@ -174,6 +174,7 @@ const unsortedProjects: Project[] = [
     scope: ["Structural works", "Roofing", "Interior finishing", "Equipment installation"],
     discipline: "Civil Engineering (NCA 2)",
     stats: [{ label: "Capacity", value: "100 Students" }, { label: "Status", value: "Ongoing" }],
+    images: Array.from({ length: 10 }, (_, i) => `/images/projects/100-capacity-ongoing/photo-${i + 1}.jpeg`),
   },
   {
     id: "800-dining-hall",
