@@ -88,6 +88,7 @@ const unsortedProjects: Project[] = [
     scope: ["Acoustic assessment", "Soundproofing material installation", "Ceiling acoustic treatment", "Quality testing"],
     discipline: "Mechanical Engineering (NCA 6)",
     stats: [{ label: "Status", value: "Completed" }],
+    images: Array.from({ length: 9 }, (_, i) => `/images/projects/soundproofing-treasury/photo-${i + 1}.jpeg`),
   },
   {
     id: "aluminium-partitions-10th",
