@@ -100,6 +100,7 @@ export default function Contact() {
               {[
                  { icon: Phone, label: "+254 703 581 833", href: "tel:+254703581833" },
                  { icon: Mail, label: "info@dicelimited.co.ke", href: "mailto:info@dicelimited.co.ke" },
+                 { icon: Mail, label: "dicelimited@yahoo.com", href: "mailto:dicelimited@yahoo.com" },
                  { icon: MapPin, label: "Nairobi, Kenya", href: "#" },
               ].map((item) => (
                 <a
