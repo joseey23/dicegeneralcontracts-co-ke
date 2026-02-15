@@ -52,7 +52,7 @@ export default function ProjectDetail() {
       {/* Hero banner */}
       <section className="navy-gradient pt-28 pb-16 md:pt-36 md:pb-20">
         <div className="container-wide section-padding !py-0">
-          <Link to="/#projects" className="inline-flex items-center gap-2 text-primary-foreground/60 hover:text-accent text-sm mb-8 transition-colors">
+          <Link to="/projects" className="inline-flex items-center gap-2 text-primary-foreground/60 hover:text-accent text-sm mb-8 transition-colors">
             <ArrowLeft size={16} /> Back to Projects
           </Link>
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
