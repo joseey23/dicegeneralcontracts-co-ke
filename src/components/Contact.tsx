@@ -1,18 +1,27 @@
 import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
-import { Phone, Mail, MapPin, Send } from "lucide-react";
+import { Phone, Mail, MapPin, Send, Loader2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { sendContactEmail } from "@/lib/contact";
 
 export default function Contact() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
   const { toast } = useToast();
   const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
+  const [sending, setSending] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast({ title: "Message sent!", description: "We'll get back to you shortly." });
-    setForm({ name: "", email: "", phone: "", message: "" });
+    setSending(true);
+    const result = await sendContactEmail(form);
+    setSending(false);
+    if (result.success) {
+      toast({ title: "Message sent!", description: "We'll get back to you shortly." });
+      setForm({ name: "", email: "", phone: "", message: "" });
+    } else {
+      toast({ title: "Failed to send", description: result.error, variant: "destructive" });
+    }
   };
 
   return (
@@ -83,9 +92,10 @@ export default function Contact() {
             />
             <button
               type="submit"
-              className="orange-gradient text-accent-foreground px-8 py-3.5 rounded-md font-bold text-sm tracking-wide hover:opacity-90 transition-opacity inline-flex items-center gap-2"
+              disabled={sending}
+              className="orange-gradient text-accent-foreground px-8 py-3.5 rounded-md font-bold text-sm tracking-wide hover:opacity-90 transition-opacity inline-flex items-center gap-2 disabled:opacity-50"
             >
-              <Send size={16} /> Send Message
+              {sending ? <Loader2 size={16} className="animate-spin" /> : <Send size={16} />} {sending ? "Sending..." : "Send Message"}
             </button>
           </motion.form>
 

@@ -1,13 +1,14 @@
 import { useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowLeft, Calendar, MapPin, User, Tag, Wrench, ArrowRight, X, ChevronLeft, ChevronRight, Send } from "lucide-react";
+import { ArrowLeft, Calendar, MapPin, User, Tag, Wrench, ArrowRight, X, ChevronLeft, ChevronRight, Send, Loader2 } from "lucide-react";
 import { projects } from "@/data/projects";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { useToast } from "@/hooks/use-toast";
+import { sendContactEmail } from "@/lib/contact";
 
 export default function ProjectDetail() {
   const { id } = useParams();
@@ -15,13 +16,21 @@ export default function ProjectDetail() {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
+  const [sending, setSending] = useState(false);
   const { toast } = useToast();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast({ title: "Message sent!", description: "We'll get back to you shortly." });
-    setForm({ name: "", email: "", phone: "", message: "" });
-    setDialogOpen(false);
+    setSending(true);
+    const result = await sendContactEmail({ ...form, projectTitle: project?.title });
+    setSending(false);
+    if (result.success) {
+      toast({ title: "Message sent!", description: "We'll get back to you shortly." });
+      setForm({ name: "", email: "", phone: "", message: "" });
+      setDialogOpen(false);
+    } else {
+      toast({ title: "Failed to send", description: result.error, variant: "destructive" });
+    }
   };
 
   if (!project) {
@@ -221,9 +230,10 @@ export default function ProjectDetail() {
             />
             <button
               type="submit"
-              className="w-full orange-gradient text-accent-foreground px-8 py-3.5 rounded-md font-bold text-sm tracking-wide hover:opacity-90 transition-opacity inline-flex items-center justify-center gap-2"
+              disabled={sending}
+              className="w-full orange-gradient text-accent-foreground px-8 py-3.5 rounded-md font-bold text-sm tracking-wide hover:opacity-90 transition-opacity inline-flex items-center justify-center gap-2 disabled:opacity-50"
             >
-              <Send size={16} /> Send Message
+              {sending ? <Loader2 size={16} className="animate-spin" /> : <Send size={16} />} {sending ? "Sending..." : "Send Message"}
             </button>
           </form>
         </DialogContent>
