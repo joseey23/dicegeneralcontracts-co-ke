@@ -14,7 +14,20 @@ export interface Project {
   images?: string[];
 }
 
-export const projects: Project[] = [
+// Helper to parse date strings for sorting
+function parseProjectDate(dateStr: string): Date {
+  const months: Record<string, number> = {
+    January: 0, February: 1, March: 2, April: 3, May: 4, June: 5,
+    July: 6, August: 7, September: 8, October: 9, November: 10, December: 11,
+  };
+  const parts = dateStr.split(" ");
+  if (parts.length === 2) {
+    return new Date(parseInt(parts[1]), months[parts[0]] ?? 0);
+  }
+  return new Date(parseInt(parts[0]));
+}
+
+const unsortedProjects: Project[] = [
   {
     id: "chiefs-office-masinga",
     title: "Construction of Chief's & Assistant Chief's Office",
@@ -245,5 +258,10 @@ export const projects: Project[] = [
     stats: [{ label: "Capacity", value: "100 Students" }, { label: "Status", value: "Completed" }],
   },
 ];
+
+// Sort projects by date, most recent first
+export const projects: Project[] = unsortedProjects.sort(
+  (a, b) => parseProjectDate(b.date).getTime() - parseProjectDate(a.date).getTime()
+);
 
 export const categories: ProjectCategory[] = ["Construction", "Renovation", "Fit-Out", "Mechanical", "Civil Works", "Ongoing"];

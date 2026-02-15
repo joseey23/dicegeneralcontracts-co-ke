@@ -117,17 +117,17 @@ export default function ProjectDetail() {
         <section className="section-padding !pt-0">
           <div className="container-wide">
             <h2 className="font-display font-bold text-2xl text-foreground mb-6">Project Gallery</h2>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            <div className="columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
               {project.images.map((img, i) => (
                 <motion.div
                   key={i}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.05 }}
-                  className="aspect-[4/3] rounded-lg overflow-hidden cursor-pointer group"
+                  className="break-inside-avoid rounded-lg overflow-hidden cursor-pointer group"
                   onClick={() => setLightboxIndex(i)}
                 >
-                  <img src={img} alt={`${project.title} - Photo ${i + 1}`} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                  <img src={img} alt={`${project.title} - Photo ${i + 1}`} className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300" />
                 </motion.div>
               ))}
             </div>
