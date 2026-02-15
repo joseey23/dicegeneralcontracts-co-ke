@@ -1,16 +1,28 @@
 import { useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowLeft, Calendar, MapPin, User, Tag, Wrench, ArrowRight, X, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowLeft, Calendar, MapPin, User, Tag, Wrench, ArrowRight, X, ChevronLeft, ChevronRight, Send } from "lucide-react";
 import { projects } from "@/data/projects";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { useToast } from "@/hooks/use-toast";
 
 export default function ProjectDetail() {
   const { id } = useParams();
   const project = projects.find((p) => p.id === id);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
+  const { toast } = useToast();
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    toast({ title: "Message sent!", description: "We'll get back to you shortly." });
+    setForm({ name: "", email: "", phone: "", message: "" });
+    setDialogOpen(false);
+  };
 
   if (!project) {
     return (
@@ -102,7 +114,10 @@ export default function ProjectDetail() {
               </div>
 
               <button
-                onClick={() => { const el = document.getElementById("contact"); if (el) { el.scrollIntoView({ behavior: "smooth" }); } else { window.location.href = "/#contact"; } }}
+                onClick={() => {
+                  setForm((f) => ({ ...f, message: `I'm interested in a project similar to "${project.title}". Please get in touch.` }));
+                  setDialogOpen(true);
+                }}
                 className="w-full orange-gradient text-accent-foreground px-6 py-3.5 rounded-md font-bold text-sm hover:opacity-90 transition-opacity flex items-center justify-center gap-2"
               >
                 Request Similar Project <ArrowRight size={16} />
@@ -163,6 +178,56 @@ export default function ProjectDetail() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Contact Dialog */}
+      <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle className="font-display text-xl">Request Similar Project</DialogTitle>
+          </DialogHeader>
+          <form onSubmit={handleSubmit} className="space-y-4 mt-2">
+            <input
+              required
+              value={form.name}
+              onChange={(e) => setForm({ ...form, name: e.target.value })}
+              placeholder="Your Name"
+              maxLength={100}
+              className="w-full px-4 py-3 rounded-lg bg-secondary border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent/50 transition"
+            />
+            <input
+              required
+              type="email"
+              value={form.email}
+              onChange={(e) => setForm({ ...form, email: e.target.value })}
+              placeholder="Email Address"
+              maxLength={255}
+              className="w-full px-4 py-3 rounded-lg bg-secondary border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent/50 transition"
+            />
+            <input
+              value={form.phone}
+              onChange={(e) => setForm({ ...form, phone: e.target.value })}
+              placeholder="Phone Number (optional)"
+              maxLength={20}
+              className="w-full px-4 py-3 rounded-lg bg-secondary border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent/50 transition"
+            />
+            <textarea
+              required
+              rows={4}
+              value={form.message}
+              onChange={(e) => setForm({ ...form, message: e.target.value })}
+              placeholder="Tell us about your project..."
+              maxLength={1000}
+              className="w-full px-4 py-3 rounded-lg bg-secondary border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent/50 transition resize-none"
+            />
+            <button
+              type="submit"
+              className="w-full orange-gradient text-accent-foreground px-8 py-3.5 rounded-md font-bold text-sm tracking-wide hover:opacity-90 transition-opacity inline-flex items-center justify-center gap-2"
+            >
+              <Send size={16} /> Send Message
+            </button>
+          </form>
+        </DialogContent>
+      </Dialog>
 
       <Footer />
     </div>
