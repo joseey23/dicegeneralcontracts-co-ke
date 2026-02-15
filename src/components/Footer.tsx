@@ -41,6 +41,7 @@ export default function Footer() {
               <p>Nairobi, Kenya</p>
               <p>+254 703 581 833</p>
               <p>info@dicelimited.co.ke</p>
+              <p>dicelimited@yahoo.com</p>
             </div>
           </div>
         </div>
