@@ -199,6 +199,7 @@ const unsortedProjects: Project[] = [
     scope: ["Gypsum board installation", "Ceiling framing", "Minor structural repairs", "Painting"],
     discipline: "Mechanical Engineering (NCA 6)",
     stats: [{ label: "Status", value: "Completed" }],
+    images: Array.from({ length: 10 }, (_, i) => `/images/projects/kura-gypsum/photo-${i + 1}.jpeg`),
   },
   {
     id: "storm-arresting-transcom",
