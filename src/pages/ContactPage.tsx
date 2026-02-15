@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Phone, Mail, MapPin, Send } from "lucide-react";
+import { Phone, Mail, MapPin, Send, Loader2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { sendContactEmail } from "@/lib/contact";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
@@ -9,11 +10,19 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 export default function ContactPage() {
   const { toast } = useToast();
   const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
+  const [sending, setSending] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast({ title: "Message sent!", description: "We'll get back to you shortly." });
-    setForm({ name: "", email: "", phone: "", message: "" });
+    setSending(true);
+    const result = await sendContactEmail(form);
+    setSending(false);
+    if (result.success) {
+      toast({ title: "Message sent!", description: "We'll get back to you shortly." });
+      setForm({ name: "", email: "", phone: "", message: "" });
+    } else {
+      toast({ title: "Failed to send", description: result.error, variant: "destructive" });
+    }
   };
 
   return (
@@ -54,8 +63,8 @@ export default function ContactPage() {
               </div>
               <input value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} placeholder="Phone Number (optional)" maxLength={20} className="w-full px-4 py-3 rounded-lg bg-secondary border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent/50 transition" />
               <textarea required rows={5} value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} placeholder="Tell us about your project..." maxLength={1000} className="w-full px-4 py-3 rounded-lg bg-secondary border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent/50 transition resize-none" />
-              <button type="submit" className="orange-gradient text-accent-foreground px-8 py-3.5 rounded-md font-bold text-sm tracking-wide hover:opacity-90 transition-opacity inline-flex items-center gap-2">
-                <Send size={16} /> Send Message
+              <button type="submit" disabled={sending} className="orange-gradient text-accent-foreground px-8 py-3.5 rounded-md font-bold text-sm tracking-wide hover:opacity-90 transition-opacity inline-flex items-center gap-2 disabled:opacity-50">
+                {sending ? <Loader2 size={16} className="animate-spin" /> : <Send size={16} />} {sending ? "Sending..." : "Send Message"}
               </button>
             </motion.form>
 
