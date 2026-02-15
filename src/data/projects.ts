@@ -212,6 +212,7 @@ const unsortedProjects: Project[] = [
     scope: ["Lightning protection system design", "Storm arrester installation", "Grounding systems", "Testing & commissioning"],
     discipline: "Electrical Engineering (NCA 5)",
     stats: [{ label: "Status", value: "Completed" }],
+    images: Array.from({ length: 7 }, (_, i) => `/images/projects/storm-arresting-transcom/photo-${i + 1}.jpeg`),
   },
   {
     id: "100-capacity-completed",
