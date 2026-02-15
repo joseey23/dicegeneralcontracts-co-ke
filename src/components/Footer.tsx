@@ -47,7 +47,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-primary-foreground/10 mt-10 pt-6 text-center text-primary-foreground/30 text-xs">
-          © {new Date().getFullYear()} Dice General Contractors Limited. All rights reserved.
+          © {new Date().getFullYear()} Dice General Contracts Limited. All rights reserved.
         </div>
       </div>
     </footer>
