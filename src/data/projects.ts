@@ -137,6 +137,7 @@ const unsortedProjects: Project[] = [
     scope: ["Foundation works", "Structural construction", "Interior fit-out", "Furniture supply", "Landscaping"],
     discipline: "Civil Engineering (NCA 2)",
     stats: [{ label: "Status", value: "Handed Over" }],
+    images: Array.from({ length: 9 }, (_, i) => `/images/projects/library-ngcdf/photo-${i + 1}.jpeg`),
   },
   {
     id: "classroom-mbeere",
