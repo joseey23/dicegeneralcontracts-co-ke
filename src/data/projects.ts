@@ -236,6 +236,7 @@ const unsortedProjects: Project[] = [
     scope: ["Design & engineering", "Cutting & welding", "Assembly", "Surface treatment", "Installation"],
     discipline: "Mechanical Engineering (NCA 6)",
     stats: [{ label: "Status", value: "Completed" }],
+    images: Array.from({ length: 9 }, (_, i) => `/images/projects/metal-fabrication/photo-${i + 1}.jpeg`),
   },
   {
     id: "100-dormitory-progress",
