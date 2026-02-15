@@ -39,6 +39,7 @@ const unsortedProjects: Project[] = [
     scope: ["Site preparation & excavation", "Structural concrete works", "Roofing & finishing", "Electrical installations", "Plumbing & drainage"],
     discipline: "Civil Engineering (NCA 2)",
     stats: [{ label: "Duration", value: "6 months" }, { label: "Status", value: "Completed" }],
+    images: Array.from({ length: 10 }, (_, i) => `/images/projects/chiefs-office-masinga/photo-${i + 1}.jpeg`),
   },
   {
     id: "60-capacity-masinga",
