@@ -257,7 +257,7 @@ const unsortedProjects: Project[] = [
   },
   {
     id: "100-dormitory-ngcdf",
-    title: "Construction & Equipping of 100 Capacity Dormitory",
+    title: "Groundbreaking Construction & Equipping of 100 Capacity Dormitory",
     client: "NG-CDF Board",
     location: "Kenya",
     date: "February 2025",
@@ -266,6 +266,7 @@ const unsortedProjects: Project[] = [
     scope: ["Foundation works", "Structural construction", "Interior fit-out", "Bed & furniture supply", "Plumbing & electrical"],
     discipline: "Civil Engineering (NCA 2)",
     stats: [{ label: "Capacity", value: "100 Students" }, { label: "Status", value: "Completed" }],
+    images: Array.from({ length: 10 }, (_, i) => `/images/projects/100-dormitory-ngcdf/photo-${i + 1}.jpeg`),
   },
 ];
 
