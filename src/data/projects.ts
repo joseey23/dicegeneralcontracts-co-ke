@@ -52,6 +52,7 @@ const unsortedProjects: Project[] = [
     scope: ["Foundation & structural works", "Interior finishing", "Furniture & equipment supply", "Electrical & water installations"],
     discipline: "Civil Engineering (NCA 2)",
     stats: [{ label: "Capacity", value: "60 Students" }, { label: "Status", value: "Completed" }],
+    images: Array.from({ length: 9 }, (_, i) => `/images/projects/60-capacity-masinga/photo-${i + 1}.jpeg`),
   },
   {
     id: "reroofing-mbeere-north",
