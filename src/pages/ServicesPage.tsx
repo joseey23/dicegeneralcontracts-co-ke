@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Building2, Wrench, Zap, PaintBucket, LayoutGrid, ShieldCheck, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import Seo from "@/components/Seo";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
@@ -83,6 +84,12 @@ const services = [
 export default function ServicesPage() {
   return (
     <div className="min-h-screen bg-background">
+      <Seo
+        title="Construction Services | Dice General Contractors Limited"
+        description="Civil works, building construction, electrical and mechanical installations, renovations, fit-outs and maintenance across Kenya."
+        path="/services"
+
+      />
       <Navbar />
       <WhatsAppButton />
 

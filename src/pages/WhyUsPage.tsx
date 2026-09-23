@@ -2,6 +2,7 @@ import { useRef, useEffect, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import { CheckCircle2, Shield, Award, Users, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import Seo from "@/components/Seo";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
@@ -33,6 +34,12 @@ function Counter({ target, suffix }: { target: number; suffix: string }) {
 
   return (
     <span ref={ref} className="font-display font-extrabold text-5xl md:text-6xl text-accent">
+      <Seo
+        title="Why Choose Dice General Contractors | Kenya Construction Company"
+        description="NCA certification, proven government delivery record, qualified engineers and strict safety standards on every project we build."
+        path="/why-us"
+
+      />
       {count}{suffix}
     </span>
   );
@@ -98,7 +105,7 @@ export default function WhyUsPage() {
                 transition={{ duration: 0.4, delay: i * 0.08 }}
                 className="bg-card border border-border rounded-xl p-8 hover:border-accent/30 transition-colors"
               >
-                <h3 className="font-display font-bold text-lg text-foreground mb-3">{item.title}</h3>
+                <h2 className="font-display font-bold text-lg text-foreground mb-3">{item.title}</h2>
                 <p className="text-muted-foreground text-sm leading-relaxed">{item.desc}</p>
               </motion.div>
             ))}

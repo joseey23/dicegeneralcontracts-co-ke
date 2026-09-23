@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, Calendar, MapPin, User, Tag, Wrench, ArrowRight, X, ChevronLeft, ChevronRight, Send, Loader2 } from "lucide-react";
 import { projects } from "@/data/projects";
+import Seo from "@/components/Seo";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
@@ -46,6 +47,12 @@ export default function ProjectDetail() {
 
   return (
     <div className="min-h-screen bg-background">
+      <Seo
+        title={`${project.title} | Dice General Contractors Limited`}
+        description={project.overview.slice(0, 155)}
+        path={`/project/${project.id}`}
+        image={project.images?.[0]}
+      />
       <Navbar />
       <WhatsAppButton />
 
@@ -169,8 +176,9 @@ export default function ProjectDetail() {
             className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center"
             onClick={() => setLightboxIndex(null)}
           >
-            <button onClick={() => setLightboxIndex(null)} className="absolute top-4 right-4 text-white/70 hover:text-white"><X size={28} /></button>
+            <button aria-label="Close photo viewer" onClick={() => setLightboxIndex(null)} className="absolute top-4 right-4 text-white/70 hover:text-white"><X size={28} /></button>
             <button
+              aria-label="Previous photo"
               className="absolute left-4 text-white/70 hover:text-white"
               onClick={(e) => { e.stopPropagation(); setLightboxIndex((lightboxIndex - 1 + project.images!.length) % project.images!.length); }}
             ><ChevronLeft size={36} /></button>
@@ -181,6 +189,7 @@ export default function ProjectDetail() {
               onClick={(e) => e.stopPropagation()}
             />
             <button
+              aria-label="Next photo"
               className="absolute right-4 text-white/70 hover:text-white"
               onClick={(e) => { e.stopPropagation(); setLightboxIndex((lightboxIndex + 1) % project.images!.length); }}
             ><ChevronRight size={36} /></button>
