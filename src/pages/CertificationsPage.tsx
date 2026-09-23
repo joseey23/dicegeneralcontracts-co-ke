@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { ShieldCheck, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import Seo from "@/components/Seo";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
@@ -47,6 +48,12 @@ const certs = [
 export default function CertificationsPage() {
   return (
     <div className="min-h-screen bg-background">
+      <Seo
+        title="Certifications & Compliance | Dice General Contractors Limited"
+        description="NCA registration, AGPO and statutory compliance credentials that qualify Dice General Contractors for public and private tenders in Kenya."
+        path="/certifications"
+
+      />
       <Navbar />
       <WhatsAppButton />
 

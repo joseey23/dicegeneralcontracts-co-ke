@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, Calendar, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
 import { projects, categories, type ProjectCategory } from "@/data/projects";
+import Seo from "@/components/Seo";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
@@ -13,6 +14,12 @@ export default function ProjectsPage() {
 
   return (
     <div className="min-h-screen bg-background">
+      <Seo
+        title="Our Projects | Dice General Contractors Limited"
+        description="Completed and ongoing construction projects in Kenya — dormitories, laboratories, dining halls, government offices and specialist fit-outs."
+        path="/projects"
+
+      />
       <Navbar />
       <WhatsAppButton />
 
@@ -72,7 +79,7 @@ export default function ProjectsPage() {
                     <h2 className="font-display font-bold text-foreground mb-3 group-hover:text-accent transition-colors line-clamp-2">
 
                       {project.title}
-                    </h3>
+                    </h2>
                     <div className="flex items-center gap-4 text-muted-foreground text-sm mb-4">
                       <span className="flex items-center gap-1"><MapPin size={14} /> {project.location}</span>
                       <span className="flex items-center gap-1"><Calendar size={14} /> {project.date}</span>

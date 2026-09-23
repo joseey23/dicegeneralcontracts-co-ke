@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Phone, Mail, MapPin, Send, Loader2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { sendContactEmail } from "@/lib/contact";
+import Seo from "@/components/Seo";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
@@ -27,6 +28,26 @@ export default function ContactPage() {
 
   return (
     <div className="min-h-screen bg-background">
+      <Seo
+        title="Contact Us | Dice General Contractors Limited"
+        description="Talk to Dice General Contractors in Nairobi. Call +254 703 581 833 or email info@dicelimited.co.ke for quotes and tender enquiries."
+        path="/contact"
+       jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "LocalBusiness",
+          name: "Dice General Contractors Limited",
+          description: "NCA-certified construction and engineering contractor in Kenya.",
+          telephone: "+254703581833",
+          email: "info@dicelimited.co.ke",
+          url: "https://dicegeneralcontracts-co-ke.lovable.app/",
+          address: {
+            "@type": "PostalAddress",
+            addressLocality: "Nairobi",
+            addressCountry: "KE",
+          },
+          areaServed: "Kenya",
+        }}
+      />
       <Navbar />
       <WhatsAppButton />
 

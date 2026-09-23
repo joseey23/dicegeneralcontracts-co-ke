@@ -2,6 +2,7 @@ import { useRef, useEffect, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import { CheckCircle2, Shield, Award, Users, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import Seo from "@/components/Seo";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
@@ -33,6 +34,12 @@ function Counter({ target, suffix }: { target: number; suffix: string }) {
 
   return (
     <span ref={ref} className="font-display font-extrabold text-5xl md:text-6xl text-accent">
+      <Seo
+        title="Why Choose Dice General Contractors | Kenya Construction Company"
+        description="NCA certification, proven government delivery record, qualified engineers and strict safety standards on every project we build."
+        path="/why-us"
+
+      />
       {count}{suffix}
     </span>
   );
