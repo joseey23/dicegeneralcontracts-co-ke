@@ -39,7 +39,7 @@ const unsortedProjects: Project[] = [
     scope: ["Structural works", "Laboratory fittings & installations", "Interior finishing", "Equipment supply", "Electrical & water installations"],
     discipline: "Civil Engineering (NCA 2)",
     stats: [{ label: "Capacity", value: "50 Students" }, { label: "Status", value: "Completed" }],
-    images: Array.from({ length: 8 }, (_, i) => `/images/projects/50-student-laboratory/photo-${i + 1}.jpeg`),
+    images: Array.from({ length: 12 }, (_, i) => `/images/projects/50-student-laboratory/photo-${i + 1}.jpeg`),
   },
   {
     id: "chiefs-office-masinga",
