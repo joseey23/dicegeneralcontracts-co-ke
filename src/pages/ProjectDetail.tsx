@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, Calendar, MapPin, User, Tag, Wrench, ArrowRight, X, ChevronLeft, ChevronRight, Send, Loader2 } from "lucide-react";
 import { projects } from "@/data/projects";
+import Seo from "@/components/Seo";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
@@ -46,6 +47,12 @@ export default function ProjectDetail() {
 
   return (
     <div className="min-h-screen bg-background">
+      <Seo
+        title={`${project.title} | Dice General Contractors Limited`}
+        description={project.overview.slice(0, 155)}
+        path={`/project/${project.id}`}
+        image={project.images?.[0]}
+      />
       <Navbar />
       <WhatsAppButton />
 
