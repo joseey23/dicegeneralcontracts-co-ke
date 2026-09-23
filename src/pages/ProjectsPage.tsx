@@ -69,7 +69,8 @@ export default function ProjectsPage() {
                     <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-accent/10 text-accent mb-4">
                       {project.category}
                     </span>
-                    <h3 className="font-display font-bold text-foreground mb-3 group-hover:text-accent transition-colors line-clamp-2">
+                    <h2 className="font-display font-bold text-foreground mb-3 group-hover:text-accent transition-colors line-clamp-2">
+
                       {project.title}
                     </h3>
                     <div className="flex items-center gap-4 text-muted-foreground text-sm mb-4">

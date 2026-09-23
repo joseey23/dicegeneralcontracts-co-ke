@@ -98,7 +98,7 @@ export default function WhyUsPage() {
                 transition={{ duration: 0.4, delay: i * 0.08 }}
                 className="bg-card border border-border rounded-xl p-8 hover:border-accent/30 transition-colors"
               >
-                <h3 className="font-display font-bold text-lg text-foreground mb-3">{item.title}</h3>
+                <h2 className="font-display font-bold text-lg text-foreground mb-3">{item.title}</h2>
                 <p className="text-muted-foreground text-sm leading-relaxed">{item.desc}</p>
               </motion.div>
             ))}
