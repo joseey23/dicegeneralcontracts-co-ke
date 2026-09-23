@@ -29,6 +29,19 @@ function parseProjectDate(dateStr: string): Date {
 
 const unsortedProjects: Project[] = [
   {
+    id: "50-student-laboratory",
+    title: "Construction & Equipping of a 50 Student Laboratory",
+    client: "NG-CDF Board",
+    location: "Kenya",
+    date: "March 2026",
+    category: "Construction",
+    overview: "Construction and full equipping of a 50-student capacity science laboratory, providing modern learning facilities for practical education.",
+    scope: ["Structural works", "Laboratory fittings & installations", "Interior finishing", "Equipment supply", "Electrical & water installations"],
+    discipline: "Civil Engineering (NCA 2)",
+    stats: [{ label: "Capacity", value: "50 Students" }, { label: "Status", value: "Completed" }],
+    images: Array.from({ length: 8 }, (_, i) => `/images/projects/50-student-laboratory/photo-${i + 1}.jpeg`),
+  },
+  {
     id: "chiefs-office-masinga",
     title: "Construction of Chief's & Assistant Chief's Office",
     client: "NG-CDF Board",
