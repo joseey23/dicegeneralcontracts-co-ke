@@ -148,7 +148,7 @@ export default function ProjectDetail() {
         <section className="section-padding !pt-0">
           <div className="container-wide">
             <h2 className="font-display font-bold text-2xl text-foreground mb-6">Project Gallery</h2>
-            <div className="columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
+            <div className="columns-1 sm:columns-2 lg:columns-3 gap-4 space-y-4">
               {project.images.map((img, i) => (
                 <motion.div
                   key={i}
