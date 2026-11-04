@@ -39,7 +39,7 @@ export default function ContactPage() {
           description: "NCA-certified construction and engineering contractor in Kenya.",
           telephone: "+254703581833",
           email: "info@dicelimited.co.ke",
-          url: "https://dicegeneralcontracts-co-ke.lovable.app/",
+          url: "https://dicegeneralcontracts.co.ke/",
           address: {
             "@type": "PostalAddress",
             addressLocality: "Nairobi",

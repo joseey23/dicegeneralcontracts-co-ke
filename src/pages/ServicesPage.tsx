@@ -131,7 +131,7 @@ export default function ServicesPage() {
                   <p className="text-muted-foreground leading-relaxed">{service.description}</p>
                 </div>
                 <div>
-                  <h3 className="font-display font-semibold text-foreground mb-4">What We Deliver</h3>
+                  <h2 className="font-display font-semibold text-lg text-foreground mb-4">What We Deliver</h2>
                   <ul className="space-y-3">
                     {service.details.map((item) => (
                       <li key={item} className="flex items-start gap-3">
