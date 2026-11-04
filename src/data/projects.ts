@@ -39,7 +39,7 @@ const unsortedProjects: Project[] = [
     scope: ["Structural works", "Laboratory fittings & installations", "Interior finishing", "Equipment supply", "Electrical & water installations"],
     discipline: "Civil Engineering (NCA 2)",
     stats: [{ label: "Capacity", value: "50 Students" }, { label: "Status", value: "Completed" }],
-    images: [14, 11, 12, 2, 17, 15, 10, 9, 4, 18, 16, 13, 5, 1, 3, 8].map(
+    images: [14, 11, 12, 2, 17, 15, 10, 9, 4, 18, 5, 13, 16, 1, 3, 8].map(
       (photo) => `/images/projects/50-student-laboratory/photo-${photo}.jpeg`,
     ),
   },
