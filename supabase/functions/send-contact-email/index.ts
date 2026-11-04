@@ -25,27 +25,50 @@ serve(async (req) => {
       throw new Error("RESEND_API_KEY is not configured");
     }
 
-    const body: ContactForm = await req.json();
+    const raw = (await req.json()) as Partial<ContactForm>;
+    const str = (v: unknown, max: number) =>
+      typeof v === "string" ? v.trim().slice(0, max) : "";
+    const oneLine = (s: string) => s.replace(/[\r\n]+/g, " ");
+    const body = {
+      name: oneLine(str(raw.name, 100)),
+      email: str(raw.email, 255),
+      phone: oneLine(str(raw.phone, 30)),
+      message: str(raw.message, 5000),
+      projectTitle: oneLine(str(raw.projectTitle, 200)),
+    };
 
-    // Validate required fields
-    if (!body.name?.trim() || !body.email?.trim() || !body.message?.trim()) {
-      return new Response(
-        JSON.stringify({ error: "Name, email, and message are required" }),
-        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-      );
+    const badRequest = (error: string) =>
+      new Response(JSON.stringify({ error }), {
+        status: 400,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+
+    if (!body.name || !body.email || !body.message) {
+      return badRequest("Name, email, and message are required");
     }
+    if (!/^[^\s@<>"]+@[^\s@<>"]+\.[^\s@<>"]+$/.test(body.email)) {
+      return badRequest("Please provide a valid email address");
+    }
+
+    const esc = (s: string) =>
+      s
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
 
     const subject = body.projectTitle
       ? `New Project Inquiry: ${body.projectTitle}`
       : `New Contact Form Submission from ${body.name}`;
 
     const htmlContent = `
-      <h2>${subject}</h2>
-      <p><strong>Name:</strong> ${body.name}</p>
-      <p><strong>Email:</strong> ${body.email}</p>
-      ${body.phone ? `<p><strong>Phone:</strong> ${body.phone}</p>` : ""}
+      <h2>${esc(subject)}</h2>
+      <p><strong>Name:</strong> ${esc(body.name)}</p>
+      <p><strong>Email:</strong> ${esc(body.email)}</p>
+      ${body.phone ? `<p><strong>Phone:</strong> ${esc(body.phone)}</p>` : ""}
       <p><strong>Message:</strong></p>
-      <p>${body.message.replace(/\n/g, "<br>")}</p>
+      <p>${esc(body.message).replace(/\n/g, "<br>")}</p>
     `;
 
     // Send to both email addresses
